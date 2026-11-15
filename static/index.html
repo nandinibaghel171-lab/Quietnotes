@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f6f2">
+  <meta name="description" content="A calm space to capture and organize your thoughts.">
+  <title>QuietNotes — your thoughts, organized</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="/">
+        <span class="brand-mark"><i></i><i></i><i></i></span>
+        <span>quiet<span class="brand-light">notes</span></span>
+      </a>
+
+      <p class="side-label">WORKSPACE</p>
+      <button class="nav-item active" id="allNotesBtn">
+        <span class="nav-symbol">▤</span> All notes
+        <span class="nav-count" id="noteCount">0</span>
+      </button>
+
+      <div class="side-tip">
+        <div class="tip-icon">✦</div>
+        <strong>A little space for big thoughts.</strong>
+        <p>Keep ideas, plans and everyday reminders in one calm place.</p>
+      </div>
+
+      <div class="sidebar-bottom"><span class="status-dot"></span> Saved to your workspace</div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow" id="todayLabel">YOUR PERSONAL SPACE</p>
+          <h1>Your notes<span class="heading-dot">.</span></h1>
+          <p class="subtitle">A clear mind starts with getting it down.</p>
+        </div>
+        <button class="primary-btn" id="newNoteBtn"><span>＋</span> New note</button>
+      </header>
+
+      <section class="toolbar">
+        <label class="search-box">
+          <span class="search-icon">⌕</span>
+          <input id="searchInput" type="search" placeholder="Search your notes..." autocomplete="off">
+          <kbd>Ctrl K</kbd>
+        </label>
+        <div class="save-status"><span class="live-dot"></span><span id="saveStatus">Connecting...</span></div>
+      </section>
+
+      <section class="notes-section hidden" id="pinnedSection">
+        <div class="section-heading"><span>PINNED</span><span class="section-line"></span></div>
+        <div class="notes-grid" id="pinnedGrid"></div>
+      </section>
+
+      <section class="notes-section">
+        <div class="section-heading"><span>YOUR COLLECTION</span><span class="section-line"></span></div>
+        <div class="notes-grid" id="notesGrid"></div>
+        <div class="empty-state hidden" id="emptyState">
+          <div class="empty-art">✎</div>
+          <h2 id="emptyTitle">Your page is waiting.</h2>
+          <p id="emptyText">Start with a thought, a plan, or something you don't want to forget.</p>
+          <button class="primary-btn" id="emptyNewBtn">＋ Create your first note</button>
+        </div>
+      </section>
+      <footer>Made for your thoughts <span>✦</span></footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop hidden" id="editorBackdrop">
+    <section class="editor-modal" role="dialog" aria-modal="true" aria-labelledby="editorHeading">
+      <div class="modal-top">
+        <span class="modal-kicker" id="editorKicker">NEW NOTE</span>
+        <button class="icon-btn close-btn" id="closeEditorBtn" aria-label="Close">×</button>
+      </div>
+      <h2 id="editorHeading">Capture a thought<span>.</span></h2>
+      <label class="field-label" for="noteTitle">TITLE</label>
+      <input class="title-input" id="noteTitle" maxlength="120" placeholder="Give your note a title..." autocomplete="off">
+      <label class="field-label content-label" for="noteContent">YOUR NOTE</label>
+      <textarea id="noteContent" placeholder="Start writing here..."></textarea>
+      <div class="editor-bottom">
+        <div>
+          <span class="field-label">COLOR</span>
+          <div class="color-options" id="colorOptions">
+            <button class="color-dot lavender selected" data-color="lavender" aria-label="Lavender"></button>
+            <button class="color-dot mint" data-color="mint" aria-label="Mint"></button>
+            <button class="color-dot peach" data-color="peach" aria-label="Peach"></button>
+            <button class="color-dot blue" data-color="blue" aria-label="Blue"></button>
+            <button class="color-dot cream" data-color="cream" aria-label="Cream"></button>
+          </div>
+        </div>
+        <label class="pin-toggle"><input type="checkbox" id="notePinned"> <span>Pin note</span></label>
+      </div>
+      <div class="modal-actions">
+        <span class="editor-message" id="editorMessage"></span>
+        <button class="secondary-btn" id="cancelBtn">Cancel</button>
+        <button class="primary-btn" id="saveNoteBtn">Save note <span>↗</span></button>
+      </div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
